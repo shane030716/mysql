@@ -4,9 +4,9 @@
 
 Running a stored procedure.
 
-For some reason, we got this error. Any following statements we ran will return this error no matter what.
+For some reason, we got this error. Any following statements we ran returned this error no matter what.
 
-Quiting the program (MySQLWOrkbench in my case) and restarting will resolve temporarily, but as long as we run the same stored procedure, we got the error again.
+Quitting the program (MySQLWOrkbench in my case) and restarting it resolved it temporarily, but as long as we ran the same stored procedure, we got the error again.
 
 ### Solution:
 
@@ -17,3 +17,4 @@ IF bDone THEN
 END IF;
 ```
 
+See more about [Loop and Cursor](https://github.com/shane030716/mysql/tree/master/Loop_and_Cursor#user-content-some-notes-about-using-loops-and-cursors-in-a-stored-procedure)
