@@ -1,5 +1,7 @@
 # Some notes about using Loops and Cursors in a Stored Procedure
 
+tl;dr See examples [here](#overall-structures)
+
 ### Declare all variables that need to be fetched from the cursor
 ```
 DECLARE column1 INT(11);
@@ -141,5 +143,11 @@ REPEAT
 UNTIL bDONE END REPEAT;
 ```
 
-See the overall structure for using CURSORs:
+### Overall Structures
+See the 3 examples of the overall structure for using CURSORs:
+
+1. [Static statement for the cursor and using `LOOP`](cursor1.sql)
+2. [Static statement for the cursor and using 'REPEAT'](cursor2.sql)
+3. [Dynamic statement for the cursor](cursor3.sql)
+
 
