@@ -23,7 +23,8 @@ DECLARE curs CURSOR FOR SELECT * FROM my_table;
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
 ```
 
-** Dynamic Statement for Cursor **
+**Dynamic Statement for Cursor**
+
 Note that if your select statement for the cursor is a dynamic statement. You might need to use a temporary table and add the following
 
 ```
