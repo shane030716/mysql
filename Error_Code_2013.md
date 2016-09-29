@@ -1,6 +1,6 @@
 # Error Code: 2013. Lost connection to MySQL server during query
 
-Situation: 
+### Situation: 
 
 running a query on MySQLWorkbench. 
 
@@ -10,7 +10,7 @@ Checked the Duration / Fetch Time, it's always 600 seconds (10 minutes).
 
 Reconnect database and `SHOW PROCESSLIST`, the query is still running.
 
-Solution:
+### Solution:
 
 * Click MySQLWorkbench from top bar menu
 * Click Preferences
