@@ -39,4 +39,36 @@ EXECUTE stmt;
 
 And change the `my_table` above to `my_temporary_table`.
   
+***
+
+### Set not done
+```
+SET bDone = 0;
+```
+
+### Open and Close cursor
+```
+OPEN curs;
+-- loop in here
+Close
+```
+
+### Start looping
+
+As far as I know, there are two ways to loop
+
+```
+read_loop: LOOP
+-- fetch and other statements in here
+END LOOP read_loop;
+```
+or
+```
+REPEAT
+-- fetch and other statements in here
+UNTIL bDone END REPEAT
+```
+
+
+
 
