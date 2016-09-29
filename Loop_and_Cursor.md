@@ -94,7 +94,7 @@ END LOOP read_loop;
 For the second looping, we need to the following around all other statements below the `FETCH` statement
 ```
 IF NOT bDONE THEN
--- OTHER statements
+  -- OTHER statements
 END IF;
 ```
 
@@ -104,9 +104,39 @@ The whole loop for the second method will look like:
 ```
 REPEAT
 FETCH curs INTO column1, column2, column3, column4;
-IF NOT bDONE THEN
--- Other statements
-END IF;
+  IF NOT bDONE THEN
+    -- Other statements
+  END IF;
 UNTIL bDONE END REPEAT;
 ```
 
+### Be careful that the loop might exit prematurely
+If in your "Other statements", one statement returns no result, this might set the bDone to 1 and it will exit the loop on the next iteration.
+
+Therefore, we need to set bDone to 0 at the end of the loop every time, since the * **real** * moment for the dDone to be 1 is when the fetch fetches no results. So,
+
+Full loop for the first method:
+```
+read_loop: LOOP
+  FETCH curs INTO column1, column2, column3, column4;
+  IF bDone THEN
+    LEAVE read_loop;
+  END IF;
+  
+  -- Other statements
+  
+  SET bDone = 0;
+END LOOP read_loop;
+```
+
+And the whole loop for the second method:
+```
+REPEAT
+FETCH curs INTO column1, column2, column3, column4;
+  IF NOT bDONE THEN
+    -- Other statements
+    
+    SET bDONE = 0;
+  END IF;
+UNTIL bDONE END REPEAT;
+```
