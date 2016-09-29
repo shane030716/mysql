@@ -103,7 +103,7 @@ If not, the last row of data from the cursor will be handled twice in "OTHER sta
 The whole loop for the second method will look like:
 ```
 REPEAT
-FETCH curs INTO column1, column2, column3, column4;
+  FETCH curs INTO column1, column2, column3, column4;
   IF NOT bDONE THEN
     -- Other statements
   END IF;
@@ -132,7 +132,7 @@ END LOOP read_loop;
 And the whole loop for the second method:
 ```
 REPEAT
-FETCH curs INTO column1, column2, column3, column4;
+  FETCH curs INTO column1, column2, column3, column4;
   IF NOT bDONE THEN
     -- Other statements
     
@@ -140,3 +140,6 @@ FETCH curs INTO column1, column2, column3, column4;
   END IF;
 UNTIL bDONE END REPEAT;
 ```
+
+See the overall structure for using CURSORs:
+
