@@ -109,4 +109,13 @@ END IF;
 
 If not, the last row of data from the cursor will be handled twice in "OTHER statements" because after finishing fetching all the from the cursor, bDone is still 0. So there will be one final empty fetch, which nothing really happend to the variables we declared. They are still the same as from the last iteration and they will be handled one more time in "Other statements"
 
+The whole loop for the second method will look like:
+```
+REPEAT
+FETCH curs INTO column1, column2, column3, column4;
+IF NOT bDONE THEN
+-- Other statements
+END IF;
+UNTIL bDONE END REPEAT;
+```
 
