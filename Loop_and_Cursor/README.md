@@ -147,7 +147,7 @@ UNTIL bDONE END REPEAT;
 See the 3 examples of the overall structure for using CURSORs:
 
 1. [Static statement for the cursor and using `LOOP`](cursor1.sql)
-2. [Static statement for the cursor and using 'REPEAT'](cursor2.sql)
+2. [Static statement for the cursor and using `REPEAT`](cursor2.sql)
 3. [Dynamic statement for the cursor](cursor3.sql)
 
 
