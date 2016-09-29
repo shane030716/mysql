@@ -13,7 +13,7 @@ DECLARE column4 TINYINT(1);
 DECLARE bDone INT;
 ```
 
-### Declare the cursor for a select statement
+#### Declare the cursor for a select statement
 ```
 DECLARE curs CURSOR FOR SELECT * FROM my_table;
 ```
@@ -23,7 +23,15 @@ DECLARE curs CURSOR FOR SELECT * FROM my_table;
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
 ```
 
-> #### Dynamic Statement for Cursor
->   Note that if your select statement for the cursor is a dynamic statement. You might need to use a temporary table and add the following
+** Dynamic Statement for Cursor **
+Note that if your select statement for the cursor is a dynamic statement. You might need to use a temporary table and add the following
+
+```
+DROP TABLE IF EXISTS my_temporary_table;
+
+SET @sql = CONCAT('CREATE TEMPORARY TABLE my_temporary_table as SELECT * FROM ', table_name);
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+```
   
 
