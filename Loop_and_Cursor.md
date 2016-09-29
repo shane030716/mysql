@@ -8,6 +8,8 @@ DECLARE column3 DATE;
 DECLARE column4 TINYINT(1);
 ```
 
+*Note use different names of the variable you are declaring from the names of the columns of the table you are fetching*
+
 ### Declare the `done` variable
 ```
 DECLARE bDone INT;
@@ -76,7 +78,7 @@ FETCH curs INTO column_1, column_2, column_3, column_4;
 ```
 
 ### Leaving the loop
-Initally you might think, when the cursor reaches the end and there's nothing to fetch, it just leave the loop. This is true, but there are some treaks that needs to be done.
+Initally you might think, when the cursor reaches the end and there's nothing to fetch, it just leave the loop. This is not necessarily true, and there are some treaks that needs to be done.
 For the first looping method, we need to add the following right below the fetch statement.
 ```
 IF bDone THEN
@@ -84,9 +86,9 @@ IF bDone THEN
 END IF;
 ```
 If not, you will be in an infinity loop, and you will probably get this error **Error Code: 2014 - Commands out of sync; you can't run this command now**
-
+```
 read_loop: LOOP
-  FETCH curs INTO column_1, column_2, column_3, column_4;
+  FETCH curs INTO column1, column2, column3, column4;
   IF bDone THEN
     LEAVE read_loop;
   END IF;
@@ -94,6 +96,8 @@ read_loop: LOOP
   -- Other statements
 END LOOP read_loop;
 ```
+
+For the second looping 
 
 
 
