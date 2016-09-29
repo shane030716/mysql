@@ -18,9 +18,12 @@ DECLARE bDone INT;
 DECLARE curs CURSOR FOR SELECT * FROM my_table;
 ```
 
-Note that if your select statement is a dynamic query. You might need to use a temporary table.
-
 #### Declare the continue handler for 'not found', and when not found set bDone to 1
 ```
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
 ```
+
+  ##### Dynamic Statement for Cursor
+  Note that if your select statement for the cursor is a dynamic statement. You might need to use a temporary table and add the following
+  
+
