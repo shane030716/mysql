@@ -68,7 +68,7 @@ or
 ```
 REPEAT
 -- fetch and other statements in here
-UNTIL bDone END REPEAT
+UNTIL bDone END REPEAT;
 ```
 
 ### Fetching
@@ -79,13 +79,16 @@ FETCH curs INTO column_1, column_2, column_3, column_4;
 
 ### Leaving the loop
 Initally you might think, when the cursor reaches the end and there's nothing to fetch, it just leave the loop. This is not necessarily true, and there are some treaks that needs to be done.
+
 For the first looping method, we need to add the following right below the fetch statement.
 ```
 IF bDone THEN
   LEAVE read_loop;
 END IF;
 ```
-If not, you will be in an infinity loop, and you will probably get this error **Error Code: 2014 - Commands out of sync; you can't run this command now**
+If not, you will be in an infinity loop, and you will probably get this error **Error Code: 2014 - Commands out of sync; you can't run this command now**.
+
+The whole loop will look like:
 ```
 read_loop: LOOP
   FETCH curs INTO column1, column2, column3, column4;
@@ -97,7 +100,13 @@ read_loop: LOOP
 END LOOP read_loop;
 ```
 
-For the second looping 
+For the second looping, we need to the following around all other statements below the `FETCH` statement
+```
+IF NOT bDONE THEN
+-- OTHER statements
+END IF;
+```
 
+If not, the last row of data from the cursor will be handled twice in "OTHER statements" because after finishing fetching all the from the cursor, bDone is still 0. So there will be one final empty fetch, which nothing really happend to the variables we declared. They are still the same as from the last iteration and they will be handled one more time in "Other statements"
 
 
