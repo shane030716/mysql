@@ -69,6 +69,31 @@ REPEAT
 UNTIL bDone END REPEAT
 ```
 
+### Fetching
+Fetch the current row of values from the cursor to the variables we declared above. The numbers of columns must match.
+```
+FETCH curs INTO column_1, column_2, column_3, column_4;
+```
+
+### Leaving the loop
+Initally you might think, when the cursor reaches the end and there's nothing to fetch, it just leave the loop. This is true, but there are some treaks that needs to be done.
+For the first looping method, we need to add the following right below the fetch statement.
+```
+IF bDone THEN
+  LEAVE read_loop;
+END IF;
+```
+If not, you will be in an infinity loop, and you will probably get this error **Error Code: 2014 - Commands out of sync; you can't run this command now**
+
+read_loop: LOOP
+  FETCH curs INTO column_1, column_2, column_3, column_4;
+  IF bDone THEN
+    LEAVE read_loop;
+  END IF;
+  
+  -- Other statements
+END LOOP read_loop;
+```
 
 
 
